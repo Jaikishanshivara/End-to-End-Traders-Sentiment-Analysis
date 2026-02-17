@@ -1,169 +1,177 @@
-📊 Trade Sentiment vs Trader Performance Analysis
+📊 Trade Sentiment vs Trader Behavior Analysis
 📌 Project Overview
 
-This project analyzes the relationship between Bitcoin market sentiment (Fear & Greed Index) and trader performance on Hyperliquid.
+This project analyzes how Bitcoin market sentiment (Fear & Greed Index) influences trader behavior and performance on Hyperliquid.
 
-The goal is to determine whether market sentiment regimes influence:
+The objective is to uncover patterns between sentiment regimes and trading activity, profitability, and positioning bias — and propose actionable strategy insights.
 
-Profitability
+📂 Repository Structure
+📁 Trading Sentiment Analysis
+│
+├── Trading_Sentiment_Analysis.ipynb   # Full analysis notebook
+├── app.py                             # Streamlit dashboard
+├── fear_greed_index.csv               # Sentiment dataset
+├── processed_daily_data.csv           # Cleaned & merged dataset
+├── Project_Report.pdf                 # Final written report
+├── Presentation.pptx                  # Summary presentation
+└── README.md
 
-Win rate
 
-Trading activity
+(Note: Historical trade dataset excluded due to size limits.)
 
-Directional behavior (Bullish vs Bearish bias)
+📊 Datasets Used
+1️⃣ Bitcoin Market Sentiment (Fear & Greed Index)
 
-🎯 Objectives
+Date
 
-This analysis answers the following:
+Sentiment value
 
-Does trader performance differ between Fear and Greed days?
+Sentiment classification (Fear, Greed, Extreme Fear, etc.)
 
-Do traders change behavior based on sentiment?
+2️⃣ Historical Trader Data (Hyperliquid)
 
-Can insights be converted into actionable trading strategies?
+Execution price, Size, Direction, Closed PnL, Fees, Timestamp, Account
 
-📂 Datasets
-1️⃣ Bitcoin Fear & Greed Index
+🛠 Methodology
+Part A — Data Preparation
 
-Daily sentiment classification
+Cleaned and validated datasets (no missing or duplicate values)
 
-Sentiment value (0–100)
+Converted timestamps to daily level
 
-Categories:
+Merged sentiment and trading data
 
-Extreme Fear
-
-Fear
-
-Neutral
-
-Greed
-
-Extreme Greed
-
-Date range: 2018–2025
-
-2️⃣ Hyperliquid Historical Trader Data
-
-211,224 trade-level records
-
-Includes:
-
-Closed PnL
-
-Fees
-
-Direction
-
-Timestamp
-
-Date range: 2023–2025
-
-🛠️ Data Preparation
-
-Verified no missing values or duplicates
-
-Converted timestamps to datetime format
-
-Normalized data to daily frequency
-
-Identified overlapping date range:
-
-2023-05-01 → 2025-05-01
-
-Created daily performance metrics:
-
-Total PnL
-
-Total Fees
+Created daily metrics:
 
 Net PnL
 
-Win Rate (%)
+Win rate
 
-Number of Trades
+Number of trades
 
-Bullish vs Bearish trade counts
+Bullish vs Bearish ratio
 
-Final merged dataset:
+Part B — Analysis
+🔹 Performance by Sentiment
 
-479 trading days
+Highest profitability observed during Fear regimes
 
-📊 Analysis & Key Findings
-🔹 1. Profitability Differs by Sentiment
+Extreme Greed showed lower overall profitability
 
-Highest average Net PnL observed during Extreme Fear
+🔹 Behavioral Changes
 
-Lower profitability during Greed regimes
+Traders showed bullish bias during Fear
 
-Win rate highest during Extreme Greed, but profits lower
+Bearish bias increased during Greed
 
-Insight:
-Fear-driven volatility creates stronger profit opportunities.
+Indicates contrarian positioning behavior
 
-🔹 2. Behavioral Shift by Sentiment
+🔹 Correlation Insights
 
-Traders buy aggressively during Fear
+Moderate positive relationship between trade frequency and profitability (0.35)
 
-Traders short more during Greed
+Weak direct correlation between sentiment value and net PnL
 
-Bull/Bear ratio confirms contrarian positioning
+Volatility and activity play stronger roles than sentiment alone
 
-Insight:
-Traders tend to buy panic and short optimism.
+Bonus — Predictive Modeling
 
-🔹 3. Volatility Drives Performance
+A Logistic Regression model was built to predict next-day profitability using:
 
-Correlation findings:
+Sentiment value
 
-Trade activity vs Net PnL: 0.35
+Trade frequency
 
-Sentiment value vs Trade activity: -0.24
+Win rate
 
-Insight:
-Higher volatility regimes increase trading activity and profitability.
+Previous day net PnL
 
-📈 Visualizations Included
+After addressing class imbalance:
 
-Average Net PnL by Sentiment
+Model accuracy: 77%
 
-Average Win Rate by Sentiment
+Strong prediction of profitable days
 
-Trade Frequency by Sentiment
+Limited detection of rare loss days
 
-Bull vs Bear Bias Chart
+Bonus — Trader Clustering
 
-Correlation Heatmap
+KMeans clustering identified 3 behavioral archetypes:
+
+High-frequency aggressive traders
+
+Conservative low-activity traders
+
+Consistent moderate performers
+
+This segmentation highlights distinct behavioral patterns across accounts.
+
+📈 Dashboard
+
+A lightweight Streamlit dashboard was developed to visualize:
+
+Sentiment vs profitability
+
+Win rate trends
+
+Behavioral trade bias
+
+Cluster segmentation
+
+To run locally:
+
+pip install -r requirements.txt
+streamlit run app.py
+
+▶️ How to Run the Notebook
+
+Install required libraries:
+
+pip install pandas numpy matplotlib seaborn scikit-learn streamlit
+
+
+Open:
+
+Trading_Sentiment_Analysis.ipynb
+
+
+Run all cells sequentially.
+
+🎯 Key Insights
+
+Fear regimes create higher volatility and stronger profit opportunities.
+
+Traders increase bullish exposure during panic conditions.
+
+Trade activity is moderately linked to profitability.
+
+Behavioral clustering reveals distinct trader archetypes.
 
 💡 Strategy Recommendations
 
-Based on findings:
+Increase exposure during Fear regimes.
 
-Increase exposure during Fear regimes
+Reduce leverage and aggression during Extreme Greed.
 
-Reduce leverage during Extreme Greed
+Adjust position sizing based on activity and volatility levels.
 
-Apply volatility-adaptive position sizing
+🧠 Skills Demonstrated
 
-🧰 Tech Stack
+Data Cleaning & Transformation
 
-Python
+Feature Engineering
 
-Pandas
+Time-Series Alignment
 
-NumPy
+Behavioral Analysis
 
-Matplotlib
+Machine Learning (Logistic Regression)
 
-Seaborn
+Unsupervised Learning (KMeans)
 
-Jupyter Notebook
+Dashboard Development (Streamlit)
 
-🚀 Conclusion
+📌 Author
 
-Trader profitability and behavior are significantly influenced by sentiment regimes.
-
-Fear environments generate higher volatility and stronger profit opportunities, while Greed regimes show reduced profitability and stronger bearish positioning.
-
-This supports the development of sentiment-aware trading strategies.
+Jai Kishan
+Artificial Intelligence & Data Science
